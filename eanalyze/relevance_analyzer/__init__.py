@@ -63,9 +63,9 @@ class RelevanceAnalyzer:
     print("BodyConclusion" + str(self.get_body_conclusion_relevance(intro + body, conclusion)))
     print("IntroConclusion" + str(self.get_intro_conclusion_relevance(conclusion, intro)))
     return (
-      0.2 * self.get_intro_body_first_relevance(body, intro) +
-      0.3 * 2* self.get_body_conclusion_relevance(intro + body, conclusion) + # Amplify the conclusion and body relevance
-      0.5 * self.get_intro_conclusion_relevance(conclusion, intro)
+      20 * self.get_intro_body_first_relevance(body, intro) +
+      30 * 2* self.get_body_conclusion_relevance(intro + body, conclusion) + # Amplify the conclusion and body relevance
+      50 * self.get_intro_conclusion_relevance(conclusion, intro)
     )
 
 

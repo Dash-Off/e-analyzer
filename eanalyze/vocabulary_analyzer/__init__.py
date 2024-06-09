@@ -24,6 +24,7 @@ class VocabularyAnalyzer:
     diversity = 100 - abs(35 - diverse) # 35 => 100% or ideal diverse
     return sum([easeness, diversity])/2
 
-  def process(self, text):
+  def process(self, sentences):
+    text = "".join(sentences)
     return self.get_score(text)
     

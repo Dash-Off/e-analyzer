@@ -14,3 +14,7 @@ python3 -m spacy download en_core_web_sm
 Install Vocabulary Analyzer:
 `pip install nltk spacy textstat`
 
+Install Relevance analyzer
+`pip install rake-nltk
+pip install scikit-learn`
+

@@ -35,7 +35,7 @@ class RelevanceAnalyzer:
     
     tfidf_matrix = self.model.fit_transform(documents)
     cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
-    return cosine_sim[0][0]
+    return cosine_sim[0][0] * 1000
 
   def get_body_conclusion_relevance(self, body, conclusion):
     return self.get_relevence_score("".join(body), "".join(conclusion))
@@ -63,9 +63,9 @@ class RelevanceAnalyzer:
     print("BodyConclusion" + str(self.get_body_conclusion_relevance(intro + body, conclusion)))
     print("IntroConclusion" + str(self.get_intro_conclusion_relevance(conclusion, intro)))
     return (
-      20 * self.get_intro_body_first_relevance(body, intro) +
-      30 * 2* self.get_body_conclusion_relevance(intro + body, conclusion) + # Amplify the conclusion and body relevance
-      50 * self.get_intro_conclusion_relevance(conclusion, intro)
+      0.2 * min(self.get_intro_body_first_relevance(body, intro), 100) +
+      0.3 * min(2* self.get_body_conclusion_relevance(intro + body, conclusion), 100) + # Amplify the conclusion and body relevance
+      0.5 * min(self.get_intro_conclusion_relevance(conclusion, intro), 100)
     )
 
 

@@ -51,6 +51,11 @@ class EAnalyze:
     print(self.actual_score)
     for model_name in self.score_weights.keys():
       score += self.actual_score[model_name] * self.score_weights[model_name]
+    # Add booster marks if grammar or vocab is above 90
+    if self.score_weights["vocab"] > 90 or self.score_weights["grammar"] > 90:
+      score += 11 # 11 bonus for extraordinary
+    if self.score_weights["vocab"] > 85 or self.score_weights["grammar"] > 85:
+      score += 6 # 11 bonus for extraordinary
     return score
     
     

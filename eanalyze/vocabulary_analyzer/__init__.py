@@ -25,6 +25,14 @@ class VocabularyAnalyzer:
     return sum([easeness, diversity])/2
 
   def process(self, sentences):
-    text = "".join(sentences)
+    text = ""
+    self.easeness_scores = {}
+    for index, sentence in enumerate(sentences):
+      text += sentence
+      score = self.get_ease_score(sentence)
+      if score < 50:
+        self.easeness_scores[(index, sentence)] = self.get_ease_score(sentence)
+
     return self.get_score(text)
+
     

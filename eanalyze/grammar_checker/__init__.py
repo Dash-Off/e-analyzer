@@ -78,8 +78,12 @@ class GrammarChecker:
   def process(self, sentences):
     '''Process sentences to find errors and provide the total scoring of the sentences'''
     scores = []
-    for sentence in sentences:
+    self.changes = {}
+    for index, sentence in enumerate(sentences):
       self.__pre_process(sentence=sentence)
+      if self.edits:
+        self.changes[(index, sentence)] = self.edits
+
       scores.append(self.__get_score())
     
     normalized_score = self.__normalize_scores(scores)

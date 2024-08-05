@@ -19,7 +19,7 @@ def run_server(dashOffId, raw):
   DashOffUtil.update_result(dashOffId, payload)
 
 
-@app.post('/get_scores')
+@app.post('/api/v1/get_scores')
 def get_scores():
     if not DashOffUtil.validate_auth(request=request):
        return {"message": "Unauthorized !"}, 401

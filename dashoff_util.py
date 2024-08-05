@@ -29,6 +29,8 @@ class DashOffUtil:
     print(ip)
     print(payload)
     print(headers)
+    print(headers["X_AUTH"])
+    print(headers["x_auth"])
     if "X_AUTH" not in headers:
       return False
     if ip not in cls.WHITELIST_IPS:

@@ -10,8 +10,9 @@ def getResult(dashOffId, raw):
     return payload
 
 from server import RPCServer
-
-server = RPCServer('0.0.0.0', int(os.environ.get("PORT", 8080)))
+port = int(os.environ.get("PORT", 8080))
+print(port)
+server = RPCServer('0.0.0.0', port)
 
 server.register_call(add)
 server.register_call(getResult)

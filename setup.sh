@@ -1,0 +1,6 @@
+python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+python3 -m pip install rake-nltk
+python3 -m pip install -U git+https://github.com/PrithivirajDamodaran/Gramformer.git@2f5046280a9516148d7892f9ba7182730b7cc204
+python3 -m pip install nltk spacy textstat
+python3 -m pip install scikit-learn
+python3 -m spacy download en_core_web_sm

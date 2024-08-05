@@ -1,16 +1,45 @@
 import requests
-from base64 import encode
-
+import hmac
+import hashlib
+from base64 import b64encode
+import os
 class DashOffUtil:
-  URL = "http://localhost:3000/api/v1/eval"
+  URL = os.environ.get('MAIN_APP')
+  SECRET = os.environ.get("MAIN_APP_SECRET")
+  WHITELIST_IPS = os.environ.get("WHITELIST_IPS", "").split(",")
   @classmethod
   def get_url(cls, path):
     return f"{cls.URL}{path}"
+  
+  @classmethod
+  def get_x_auth(cls, payload):
+    sign_string = "signed,"
+    for key in payload:
+      sign_string += f"{key},"
+    return b64encode(
+      hmac.new(cls.SECRET, sign_string, hashlib.sha256).hexdigest().encode()
+    ).decode()
+  
+  @classmethod
+  def validate_auth(cls, request):
+    headers = request.headers
+    ip = request.remote_addr
+    payload = request.get_json()
+
+    if "X_AUTH" not in headers:
+      return False
+    if ip not in cls.WHITELIST_IPS:
+      return False
+    
+    X_AUTH = headers["X_AUTH"]
+    signature = cls.get_x_auth(payload)
+    return X_AUTH == signature
+    
 
   @classmethod
   def update_result(cls, dashOffId, payload):
-    response = requests.post(cls.get_url(f"/myDashOffs/{dashOffId}/results"), json=payload)
-    print(response)
+    response = requests.post(cls.get_url(f"/myDashOffs/{dashOffId}/results"), json=payload, headers={"X_AUTH": cls.get_x_auth(payload=payload)})
+
     if response.status_code == 200:
       print(f"Successfully posted results: {dashOffId}")
     else:

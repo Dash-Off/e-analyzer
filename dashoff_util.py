@@ -29,14 +29,14 @@ class DashOffUtil:
     print(ip)
     print(payload)
     print(headers)
-    print(headers["X_AUTH"])
-    print(headers["x_auth"])
-    if "X_AUTH" not in headers:
+    print(headers["x-auth"])
+    print(headers.get("X-AUTH"))
+    if "X-AUTH" not in headers:
       return False
     if ip not in cls.WHITELIST_IPS:
       return False
     
-    X_AUTH = headers["X_AUTH"]
+    X_AUTH = headers["X-AUTH"]
     signature = cls.get_x_auth(payload)
     print(signature)
     return X_AUTH == signature
@@ -44,7 +44,7 @@ class DashOffUtil:
 
   @classmethod
   def update_result(cls, dashOffId, payload):
-    response = requests.post(cls.get_url(f"/myDashOffs/{dashOffId}/results"), json=payload, headers={"X_AUTH": cls.get_x_auth(payload=payload)})
+    response = requests.post(cls.get_url(f"/myDashOffs/{dashOffId}/results"), json=payload, headers={"X-AUTH": cls.get_x_auth(payload=payload)})
 
     if response.status_code == 200:
       print(f"Successfully posted results: {dashOffId}")

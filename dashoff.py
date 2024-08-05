@@ -36,3 +36,7 @@ def get_scores():
     thread.start()
 
     return jsonify({"message": f"Job Recieved: {body['dashOffId']}"}), 202
+
+
+if __name__ == '__main__':
+    app.run()

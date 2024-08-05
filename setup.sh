@@ -8,3 +8,4 @@ python3 -m pip install flask
 python3 -c "import nltk
 nltk.download('punkt')"
 python3 -m pip install flask
+python3 -m pip install gunicorn

@@ -26,6 +26,9 @@ class DashOffUtil:
     ip = request.remote_addr
     payload = request.get_json()
 
+    print(ip)
+    print(payload)
+    print(headers)
     if "X_AUTH" not in headers:
       return False
     if ip not in cls.WHITELIST_IPS:
@@ -33,6 +36,7 @@ class DashOffUtil:
     
     X_AUTH = headers["X_AUTH"]
     signature = cls.get_x_auth(payload)
+    print(signature)
     return X_AUTH == signature
     
 

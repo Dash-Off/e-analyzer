@@ -11,7 +11,7 @@ def getResult(dashOffId, raw):
 
 from server import RPCServer
 
-server = RPCServer('0.0.0.0', os.environ.get("PORT", 8080))
+server = RPCServer('0.0.0.0', int(os.environ.get("PORT", 8080)))
 
 server.register_call(add)
 server.register_call(getResult)

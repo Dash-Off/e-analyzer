@@ -1,2 +1,0 @@
-web: FLASK_APP=app/flaskapp.py flask run
-worker: python3 app.py

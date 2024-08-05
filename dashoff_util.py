@@ -17,7 +17,7 @@ class DashOffUtil:
     for key in payload:
       sign_string += f"{key},"
     return b64encode(
-      hmac.new(cls.SECRET, sign_string, hashlib.sha256).hexdigest().encode()
+      hmac.new(cls.SECRET.encode(), sign_string.encode(), hashlib.sha256).hexdigest().encode()
     ).decode()
   
   @classmethod

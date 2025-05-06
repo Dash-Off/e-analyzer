@@ -1,8 +1,7 @@
-## Automated Essay Scorer
-
-Use the blackboard architecture pattern to build the scorer
-
-
+## EAnalyzer
+Creative Essay scoring microservice to score articles from https://github.com/Dash-Off
+Use the blackboard architecture pattern to build a creative essay scorer powered by PrithivirajDamodaran/Gramformer.
+Contains grammar checker, vocabulary analyzer & relevance analyzer to score the creatives based on the challenges.
 
 Install grammar checker:
 `

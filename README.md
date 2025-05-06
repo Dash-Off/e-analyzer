@@ -3,6 +3,8 @@ Creative Essay scoring microservice to score articles from https://github.com/Da
 Use the blackboard architecture pattern to build a creative essay scorer powered by PrithivirajDamodaran/Gramformer.
 Contains grammar checker, vocabulary analyzer & relevance analyzer to score the creatives based on the challenges.
 
+<img src="https://dashoff.netlify.app/assets/scores-ByqaeFfn.png" />
+
 Install grammar checker:
 `
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
